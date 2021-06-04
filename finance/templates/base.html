@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Exchanger</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" >Currency Exchanger</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">USD: {{data.rates.USD }}</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">TRY: {{data.rates.TRY }}</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">JPY: {{data.rates.JPY }}</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"> GBP: {{data.rates.GBP }}</a>
+            </li>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"> CAD: {{data.rates.CAD }}</a>
+            </li>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"> AUD: {{data.rates.AUD }}</a>
+            </li>
+            </li>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"> CHF: {{data.rates.CHF }}</a>
+            </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"> CNY: {{data.rates.CNY }}</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"> EGP: {{data.rates.EGP }}</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"> NZD: {{data.rates.NZD }}</a>
+            </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"> TJS: {{data.rates.TJS }}</a>
+            </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"> UAH: {{data.rates.UAH }}</a>
+            </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"> DKK: {{data.rates.DKK }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+        <br> <br>
+        {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+
+        <form action= "{% url 'exchanger' %}" method="POST">
+                {% csrf_token %}
+                    <div class="container-lg" style="background:#f00; width: 770px;">
+                        <br>
+                <h2 style="text-align: center; color: white;">CURRENCY EXCHANGER</h2>
+                    <div class="container">
+                        <div class="row g-5">
+                            <div class="col-3">
+                                <select class="form-select form-select-md mb-1" aria-label=".form-select-lg example" name="option-1" >
+                                  <option selected>Select Currency</option>
+                                  <option value="TRY">TRY</option>
+                                  <option value="USD">USD</option>
+                                  <option value="EUR">EUR</option>
+                                  <option value="JPY">JPY</option>
+                                  <option value="GBP">GBP</option>
+                                  <option value="AUD">AUD</option>
+                                  <option value="CAD">CAD</option>
+                                </select>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" name="currency-value" placeholder="Quantity...">
+                        <div>
+                        </div>
+                    </div>
+
+                     <div class="container">
+                        <div class="row g-5">
+                            <div class="col-3">
+                                    <select class="form-select form-select-md mb-1" aria-label=".form-select-lg example" name="option-2">
+                                      <option selected>Target Currency</option>
+                                      <option value="TRY">TRY</option>
+                                      <option value="USD">USD</option>
+                                      <option value="EUR">EUR</option>
+                                      <option value="JPY">JPY</option>
+                                      <option value="GBP">GBP</option>
+                                      <option value="AUD">AUD</option>
+                                      <option value="CAD">CAD</option>
+                                    </select>
+                            </div>
+                            <div class="col-9">
+                                {% if result %}
+                                    <p style="text-align:center;"> {{ result}} {{target_cur}}</p>
+                                {% else %}
+                                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                {% endif %}
+                            <div >
+                        </div>
+                    </div>
+
+                                <button type="submit" class="btn btn-success">Exchange</button>
+
+            </div>
+        </form>
+
+</body>
+</html>
