@@ -12,7 +12,7 @@ def exchanger(request):
         quantity = request.POST["currency-value"]
 
         if base_cur and target_cur and quantity:
-            api_key = "369a2d29d17693f0d355a272ae82d501"
+            api_key = "YOUR API KEY"
             url = "http://data.fixer.io/api/latest?access_key="
             r = requests.get(url + api_key)
             data = json.loads(r.content)
